@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .calculator {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator input {
+            width: 200px;
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .calculator button {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #45a049;
+        }
+        .calculator .result {
+            width: 200px;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" id="num1" placeholder="first lumber" />
+        <input type="text" id="num2" placeholder="dusra number" />
+        <div class="result" id="result">Result: 0</div>
+        <button id="add">+</button>
+        <button id="subtract">-</button>
+        <button id="multiply">*</button>
+        <button id="divide">/</button>
+        <button id="clear">C</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Function to handle operations
+            function calculate(operator) {
+                var num1 = parseFloat($('#num1').val());
+                var num2 = parseFloat($('#num2').val());
+                var result = 0;
+
+                // If any number is not valid, show an error
+                if (isNaN(num1) || isNaN(num2)) {
+                    $('#result').text('Please enter valid numbers');
+                    return;
+                }
+
+                // Perform the operation based on the clicked button
+                switch (operator) {
+                    case 'add':
+                        result = num1 + num2;
+                        break;
+                    case 'subtract':
+                        result = num1 - num2;
+                        break;
+                    case 'multiply':
+                        result = num1 * num2;
+                        break;
+                    case 'divide':
+                        if (num2 === 0) {
+                            $('#result').text('Cannot divide by zero');
+                            return;
+                        }
+                        result = num1 / num2;
+                        break;
+                }
+                $('#result').text('Result: ' + result);
+            }
+
+            // Button clicks to perform operations
+            $('#add').click(function () {
+                calculate('add');
+            });
+
+            $('#subtract').click(function () {
+                calculate('subtract');
+            });
+
+            $('#multiply').click(function () {
+                calculate('multiply');
+            });
+
+            $('#divide').click(function () {
+                calculate('divide');
+            });
+
+            // Clear the textboxes and result
+            $('#clear').click(function () {
+                $('#num1').val('');
+                $('#num2').val('');
+                $('#result').text('Result: 0');
+            });
+        });
+    </script>
+
+</body>
+</html>

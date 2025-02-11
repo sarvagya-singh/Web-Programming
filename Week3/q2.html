@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Clock and Greeting</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .clock {
+            font-size: 48px;
+            margin: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .greeting {
+            font-size: 32px;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .message {
+            font-size: 24px;
+            color: #555;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dynamic Clock and Greeting</h1>
+        <div id="clock" class="clock">Loading time...</div>
+        <div id="greeting" class="greeting">Waiting to greet you...</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // Format time
+            const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+            // Display the clock
+            document.getElementById('clock').textContent = formattedTime;
+
+            // Greet user based on time of day
+            let greetingMessage = '';
+            if (hours >= 5 && hours < 12) {
+                greetingMessage = "Sarvagya wishes you a very Good Morning!";
+            } else if (hours >= 12 && hours < 17) {
+                greetingMessage = "Sarvagya wishes you a very Good Afternoon!";
+            } else if (hours >= 17 && hours < 21) {
+                greetingMessage = "Sarvagya wishes you a very Good Evening!";
+            } else {
+                greetingMessage = "Sarvagya wishes you a very Good Night!";
+            }
+
+            // Display greeting
+            document.getElementById('greeting').textContent = greetingMessage;
+
+            // Show alert based on greeting
+            if (hours === 5) {
+                alert("Good Morning! Have a great start to your day!");
+            } else if (hours === 12) {
+                alert("Good Afternoon! Enjoy the rest of your day!");
+            } else if (hours === 17) {
+                alert("Good Evening! Hope you had a productive day!");
+            } else if (hours === 21) {
+                alert("Good Night! Have a restful sleep!");
+            }
+        }
+
+        // Update the clock and greeting every second
+        setInterval(updateClock, 1000);
+
+        // Initialize the clock and greeting when the page loads
+        window.onload = updateClock;
+    </script>
+
+</body>
+</html>

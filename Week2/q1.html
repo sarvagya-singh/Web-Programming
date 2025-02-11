@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Bio-Data Form</title>
+
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #4CAF50;
+        }
+
+        /* Form Container */
+        .form-container {
+            background-color: white;
+            width: 70%;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Heading */
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Input and Select Fields */
+        input[type="text"], input[type="email"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        /* Labels */
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Checkbox and Radio Button Styles */
+        .container, .radcontainer {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+        }
+
+        .container input, .radcontainer input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark, .radcheckmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+        .container:hover input ~ .checkmark, .radcontainer:hover input ~ .radcheckmark {
+            background-color: #ccc;
+        }
+
+        .container input:checked ~ .checkmark, .radcontainer input:checked ~ .radcheckmark {
+            background-color: #2196F3;
+        }
+
+        .checkmark:after, .radcheckmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .container input:checked ~ .checkmark:after, .radcontainer input:checked ~ .radcheckmark:after {
+            display: block;
+        }
+
+        .container .checkmark:after, .radcontainer .radcheckmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Custom Submit Button */
+        .btn-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        /* Styling for textareas */
+        textarea {
+            height: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Sarvagyas Autism Bio-Data Form</h1>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <h2>Student Bio-Data</h2>
+
+        <form>
+            <!-- Personal Information -->
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Favourite Mental Health Disorder (Checkboxes) -->
+            <div class="form-group">
+                <label>What is your favourite mental health disorder in your partner?</label>
+                <label class="container">Schizophrenia
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Autism
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Crippling Anxiety
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">ADHD
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Substance Abuse Disorder
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+
+            <!-- What do you like about yourself? (Checkboxes) -->
+            <div class="form-group">
+                <label>What do you like about yourself?</label>
+                <label class="radcontainer">ADHD
+                    <input type="checkbox" checked="checked">
+                    <span class="radcheckmark"></span>
+                </label>
+                <label class="radcontainer">Bajaj Chetak
+                    <input type="checkbox" checked="checked">
+                    <span class="radcheckmark"></span>
+                </label>
+                <label class="radcontainer">Dont need external validation
+                    <input type="checkbox" checked="checked">
+                    <span class="radcheckmark"></span>
+                </label>
+                <label class="radcontainer">Active
+                    <input type="checkbox" checked="checked">
+                    <span class="radcheckmark"></span>
+                </label>
+                <label class="radcontainer">Self Dependent
+                    <input type="checkbox" checked="checked">
+                    <span class="radcheckmark"></span>
+                </label>
+            </div>
+
+            <!-- Favourite Hotwheels Car (Select Dropdown) -->
+            <div class="form-group">
+                <label for="cars">Choose your favourite Hotwheels:</label>
+                <select id="cars" name="cars">
+                    <option value="volvo">Maruti 800</option>
+                    <option value="saab">Lord Alto</option>
+                    <option value="mercedes">Bajaj Chetak</option>
+                    <option value="audi">Passion Pro</option>
+                </select>
+            </div>
+
+            <!-- Text Area for Additional Information -->
+            <div class="form-group">
+                <label for="info">Additional Information:</label>
+                <textarea id="info" name="info" placeholder="Any additional comments..." required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html>
+    <head>Bio-Data Form</head>
+    <style>
+        h1 {text-align: center;}
+
+     .container {
+       display: block;
+       position: relative;
+       padding-left: 35px;
+       margin-bottom: 12px;
+       cursor: pointer;
+       font-size: 22px;
+       -webkit-user-select: none;
+       -moz-user-select: none;
+       -ms-user-select: none;
+       user-select: none;
+     }
+     
+     .container input {
+       position: absolute;
+       opacity: 0;
+       cursor: pointer;
+       height: 0;
+       width: 0;
+     }
+     
+    
+     .checkmark {
+       position: absolute;
+       top: 0;
+       left: 0;
+       height: 25px;
+       width: 25px;
+       background-color: #eee;
+     }
+     
+
+     .container:hover input ~ .checkmark {
+       background-color: #ccc;
+     }
+     
+
+     .container input:checked ~ .checkmark {
+       background-color: #2196F3;
+     }
+     
+     /* Create the checkmark/indicator (hidden when not checked) */
+     .checkmark:after {
+       content: "";
+       position: absolute;
+       display: none;
+     }
+     
+     /* Show the checkmark when checked */
+     .container input:checked ~ .checkmark:after {
+       display: block;
+     }
+     
+     /* Style the checkmark/indicator */
+     .container .checkmark:after {
+       left: 9px;
+       top: 5px;
+       width: 5px;
+       height: 10px;
+       border: solid white;
+       border-width: 0 3px 3px 0;
+       -webkit-transform: rotate(45deg);
+       -ms-transform: rotate(45deg);
+       transform: rotate(45deg);
+     } 
+
+      /* Customize the label (the container) */
+.radcontainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radcontainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radcontainer:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radcontainer input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radcontainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radcontainer .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+} 
+
+     </style>
+
+<body>
+    <h1>Sarvagyas Autism Bio-Data Form</h1>
+    <p>What is your favourite mental health disorder in your partner?</p>
+    <label class="container">Schizophrenia
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      
+      <label class="container">Autism
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      
+      <label class="container">Crippling Anxiety
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      
+      <label class="container">ADHD
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label> 
+      <label class="container">Substance Abuse Disorder
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label> 
+
+      <p>What do you like about yourself?</p>
+
+      <label class="radcontainer">ADHD
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      <label class="radcontainer">Substance Abuse Disorder
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      <label class="radcontainer">No Validation Needed
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      <label class="radcontainer">Active
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+      <label class="radcontainer">Self Dependent
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+      </label>
+
+      <p>Select your favourite hotwheels</p>
+      <label for="cars">Choose a car:</label>
+
+      <select name="cars" id="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+
+</body>
+</html>
+-->

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-size: cover; /* Make background image cover the entire page */
+            background-position: center;
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .birthday-card {
+            display: inline-block;
+            background-color: white;
+            padding: 30px;
+            border: 2px solid black;
+            text-align: center;
+            opacity: 0.7; /* Make the card slightly transparent for effect */
+        }
+
+        .birthday-card img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        input[type="button"], input[type="text"], input[type="number"], input[type="color"], select {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 250px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- User can edit the greeting message -->
+<div class="birthday-card">
+    <img src="./images.jpeg" alt="Birthday Cake">
+    <h1 id="greetingText">Happy Birthday, and many more</h1>
+</div>
+
+<div class="input-container">
+    <label for="fontSize">Choose a font size:</label>
+    <input type="number" id="fontSize" value="25" min="10" max="50">
+    <br><br>
+
+    <label for="fontColor">Choose a font color:</label>
+    <input type="color" id="fontColor" value="#000000">
+    <br><br>
+
+    <label for="borderStyle">Choose a border style:</label>
+    <select id="borderStyle">
+        <option value="solid">Solid</option>
+        <option value="dashed">Dashed</option>
+        <option value="dotted">Dotted</option>
+    </select>
+    <br><br>
+
+    <label for="bgImage">Choose a background image:</label>
+    <input type="file" id="bgImage" accept="image/*" onchange="changeBackgroundImage(event)">
+    <br><br>
+
+    <label for="customMessage">Edit the greeting message:</label>
+    <input type="text" id="customMessage" value="Happy Birthday, and many more">
+    <br><br>
+
+    <input type="button" value="Update" onclick="updateCard()">
+</div>
+
+<script>
+    function updateCard() {
+        // Get values from input fields
+        var fontSize = document.getElementById("fontSize").value + "px";
+        var fontColor = document.getElementById("fontColor").value;
+        var borderStyle = document.getElementById("borderStyle").value;
+        var customMessage = document.getElementById("customMessage").value;
+
+        // Update the greeting message
+        document.getElementById("greetingText").innerText = customMessage;
+
+        // Update the card with new styles
+        document.getElementById("greetingText").style.fontSize = fontSize;
+        document.getElementById("greetingText").style.color = fontColor;
+        document.querySelector('.birthday-card').style.borderStyle = borderStyle;
+    }
+
+    function changeBackgroundImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            document.body.style.backgroundImage = `url(${e.target.result})`;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>

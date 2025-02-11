@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .choices {
+            margin-bottom: 20px;
+        }
+        .choices input {
+            margin-right: 10px;
+        }
+        .result {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Online Quiz</h1>
+        <div id="quiz">
+            <div id="question-container">
+                <!-- Question will appear here -->
+            </div>
+            <div class="choices">
+                <!-- Choices will appear here -->
+            </div>
+            <button id="next-btn" class="btn">Next</button>
+        </div>
+        <div id="result" class="result">
+            <!-- Result will appear here -->
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Which is the most attractive mental health disorder?",
+                choices: ["ADHD", "Crippling Anxiety", "Autism", "Bajaj Chetak"],
+                correctAnswer: "Autism"
+            },
+            {
+                question: "Which is the best college in Manipal in terms of retarded shawties?",
+                choices: ["WGSHA", "MSAP", "KMC", "MCHP"],
+                correctAnswer: "KMC"
+            },
+            {
+                question: "Who wrote 'To Kill a Mockingbird'?",
+                choices: ["Harper Lee", "J.K. Rowling", "Ernest Hemingway", "Mark Twain"],
+                correctAnswer: "Harper Lee"
+            },
+            {
+                question: "What is the best way to die?",
+                choices: ["Being stabbed in the back by ur friend", "Bleeding out in the snow", "Bullet for the motherland", "Drowning in the Pacific"],
+                correctAnswer: "Bleeding out in the snow"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questionContainer = document.getElementById("question-container");
+        const choicesContainer = document.querySelector(".choices");
+        const nextButton = document.getElementById("next-btn");
+        const resultContainer = document.getElementById("result");
+
+        function loadQuestion() {
+            const currentQuestion = quizData[currentQuestionIndex];
+            questionContainer.textContent = currentQuestion.question;
+            choicesContainer.innerHTML = "";
+
+            currentQuestion.choices.forEach(choice => {
+                const choiceLabel = document.createElement("label");
+                const choiceInput = document.createElement("input");
+                choiceInput.type = "radio";
+                choiceInput.name = "choice";
+                choiceInput.value = choice;
+
+                choiceLabel.appendChild(choiceInput);
+                choiceLabel.appendChild(document.createTextNode(choice));
+                choicesContainer.appendChild(choiceLabel);
+                choicesContainer.appendChild(document.createElement("br"));
+            });
+        }
+
+        function checkAnswer() {
+            const selectedChoice = document.querySelector('input[name="choice"]:checked');
+            if (selectedChoice) {
+                const selectedAnswer = selectedChoice.value;
+                const correctAnswer = quizData[currentQuestionIndex].correctAnswer;
+
+                if (selectedAnswer === correctAnswer) {
+                    score++;
+                }
+            }
+        }
+
+        function showResult() {
+            resultContainer.style.display = "block";
+            resultContainer.textContent = `Your score is: ${score} out of ${quizData.length}`;
+        }
+
+        function nextQuestion() {
+            checkAnswer();
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                nextButton.style.display = "none";
+                showResult();
+            }
+        }
+
+        nextButton.addEventListener("click", nextQuestion);
+
+        // Load the first question when the page is ready
+        loadQuestion();
+    </script>
+    
+</body>
+</html>
+<!--
+<!DOCTYPE html>
+<html>
+    <head>
+        <div id = "quiz"></div>
+        <button id = "submit">Get Results</button>
+        <div id = "results"></div>
+    </head>
+    <body>
+    <script>
+        var myQuestions = [
+	{
+		question: "What is 10/2?",
+		answers: {
+			a: '3',
+			b: '5',
+			c: '115'
+		},
+		correctAnswer: 'b'
+	},
+	{
+		question: "What is 30/3?",
+		answers: {
+			a: '3',
+			b: '5',
+			c: '10'
+		},
+		correctAnswer: 'c'
+	}
+];
+	
+function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+
+	function showQuestions(questions, quizContainer){
+        // we'll need a place to store the output and the answer choices
+        var output = [];
+        var answers;
+    
+        // for each question...
+        for(var i=0; i<questions.length; i++){
+            
+            // first reset the list of answers
+            answers = [];
+    
+            // for each available answer to this question...
+            for(letter in questions[i].answers){
+    
+                // ...add an html radio button
+                answers.push(
+                    '<label>'
+                        + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+                        + letter + ': '
+                        + questions[i].answers[letter]
+                    + '</label>'
+                );
+            }
+    
+            // add this question and its answers to the output
+            output.push(
+                '<div class="question">' + questions[i].question + '</div>'
+                + '<div class="answers">' + answers.join('') + '</div>'
+            );
+        }
+    
+        // finally combine our output list into one string of html and put it on the page
+        quizContainer.innerHTML = output.join('');
+    }
+    showQuestions(questions, quizContainer);
+
+	function showResults(questions, quizContainer, resultsContainer){
+	
+        // gather answer containers from our quiz
+        var answerContainers = quizContainer.querySelectorAll('.answers');
+        
+        // keep track of user's answers
+        var userAnswer = '';
+        var numCorrect = 0;
+        
+        // for each question...
+        for(var i=0; i<questions.length; i++){
+    
+            // find selected answer
+            userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+            
+            // if answer is correct
+            if(userAnswer===questions[i].correctAnswer){
+                // add to the number of correct answers
+                numCorrect++;
+                
+                // color the answers green
+                answerContainers[i].style.color = 'lightgreen';
+            }
+            // if answer is wrong or blank
+            else{
+                // color the answers red
+                answerContainers[i].style.color = 'red';
+            }
+        }
+    
+        // show number of correct answers out of total
+        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+    }
+
+
+
+	// when user clicks submit, show results
+	submitButton.onclick = function(){
+		showResults(questions, quizContainer, resultsContainer);
+	}
+}
+
+// show the questions
+	showQuestions(questions, quizContainer);
+// on submit, show results
+submitButton.onclick = function(){
+	showResults(questions, quizContainer, resultsContainer);
+}
+
+var quizContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
+
+generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+
+    </script>
+    </body>
+</html>
+-->

@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table and Image Movement</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        table {
+            margin-right: 20px;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        #sampleImage {
+            width: 150px;
+            height: 150px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <table id="dataTable">
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+            </tr>
+            <tr>
+                <td>Sarvagya, BPD</td>
+                <td>Sarvesh, ADHD</td>
+                <td>Prakhar, Anxiety</td>
+            </tr>
+            <tr>
+                <td>Aaryan, Insecurity</td>
+                <td>Balaji, Autism(Good)</td>
+                <td>Lishita, ADHD</td>
+            </tr>
+            <tr>
+                <td>Ainket, Self Esteem</td>
+                <td>Vaishnavi, Autism</td>
+                <td>Jowan, Swag</td>
+            </tr>
+        <img src="./images.jpeg" alt="Sample Image" id="sampleImage">
+    </div>
+    <button id="moveButton">Move Right to Left</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#moveButton').click(function() {
+                // Move the table and image together from right to left
+                $('#container').animate({
+                    left: '-100%'  // Move both table and image out of the screen
+                }, 2000);  // 2 seconds animation duration
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table and Image Movement</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #container {
+            position: relative;
+            overflow: hidden;
+            width: 500px;
+            height: 300px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: lightgreen; /* Alternate row color */
+        }
+        img {
+            width: 100px; /* Set image size */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <table>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+        <tr>
+            <td>Sarvagya, Autism</td>
+            <td>Sarvesh, ADHD</td>
+            <td>Prakhar, Anxiety</td>
+        </tr>
+        <tr>
+            <td>Aaryan, Insecurity</td>
+            <td>Balaji, Autism(Good)</td>
+            <td>Lishita, ADHD</td>
+        </tr>
+        <tr>
+            <td>Mohi, Secure</td>
+            <td>Yuvraj, Substance Abuse</td>
+            <td>Jowan, Swag</td>
+        </tr>
+    </table>
+
+    <img src="<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table and Image Movement</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #container {
+            position: relative;
+            overflow: hidden;
+            width: 500px;
+            height: 300px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: lightgreen; /* Alternate row color */
+        }
+        img {
+            width: 100px; /* Set image size */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <table>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+        <tr>
+            <td>Row 1, Cell 1</td>
+            <td>Row 1, Cell 2</td>
+            <td>Row 1, Cell 3</td>
+        </tr>
+        <tr>
+            <td>Row 2, Cell 1</td>
+            <td>Row 2, Cell 2</td>
+            <td>Row 2, Cell 3</td>
+        </tr>
+        <tr>
+            <td>Row 3, Cell 1</td>
+            <td>Row 3, Cell 2</td>
+            <td>Row 3, Cell 3</td>
+        </tr>
+    </table>
+
+    <img src="./images.jpeg" alt="Placeholder Image">
+</div>
+
+<button id="moveButton">Move Left</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#moveButton').click(function() {
+            $('#container').animate({ left: '-=200px' }, 'slow'); // Move left
+        });
+    });
+</script>
+
+</body>
+</html>
+" alt="Placeholder Image">
+</div>
+
+<button id="moveButton">Move Left</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#moveButton').click(function() {
+            $('#container').animate({ left: '-=200px' }, 'slow'); // Move left
+        });
+    });
+</script>
+
+</body>
+</html>
+-->
